@@ -1,0 +1,32 @@
+{
+  "name": "research-project-backend",
+  "version": "1.0.0",
+  "description": "Research-Project-Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon --watch server/**/* --exec ts-node server/app.ts",
+    "start": "npx tsc && node dist/app.js",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glenntroncquo/Research-Project-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glenntroncquo/Research-Project-Backend/issues"
+  },
+  "homepage": "https://github.com/glenntroncquo/Research-Project-Backend#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "eslint": "^8.1.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
