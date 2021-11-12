@@ -1,11 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Post } from './Post'
+import { User } from './User'
 
 @Entity('Like')
 export class Like {
-  @PrimaryGeneratedColumn('uuid')
-  like_id?: string
-  @Column('uuid')
-  activity_id?: string
-  @Column('uuid')
+  @PrimaryColumn('uuid')
+  post_id?: string
+  @PrimaryColumn('uuid')
   user_id?: string
+
+  @ManyToOne(() => User, (user) => user.likeConnection)
+  @JoinColumn({ name: 'user_id' })
+  user?: User
+
+  @ManyToOne(() => Post, (post) => post.likeConnection)
+  @JoinColumn({ name: 'post_id' })
+  post?: Post
 }

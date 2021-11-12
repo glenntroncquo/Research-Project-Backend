@@ -1,12 +1,9 @@
-import { Column, Entity, OneToMany } from 'typeorm'
-import { User } from './User'
+import { Column, Entity, PrimaryColumn } from 'typeorm'
 
 @Entity('Follower')
 export class Follower {
   @Column('uuid')
   user_id?: string
-  @Column('uuid')
+  @PrimaryColumn('uuid')
   follower_id?: string
-
-//   @OneToMany(() => User, user => user)
 }

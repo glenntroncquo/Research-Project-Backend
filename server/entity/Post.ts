@@ -2,20 +2,22 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Comment } from './Comment'
 import { Like } from './Like'
 
-@Entity('User')
-export class User {
+@Entity('Post')
+export class Post {
   @PrimaryGeneratedColumn('uuid')
-  user_id?: string
+  post_id?: string
   @Column()
-  name?: string
+  title?: string
   @Column()
-  lastname?: string
+  description?: string
+  @Column('datetime')
+  date_time?: string
   @Column()
-  email?: string
+  place?: string
 
-  @OneToMany(() => Like, (like) => like.user)
+  @OneToMany(() => Like, (like) => like.post)
   likeConnection?: Like[]
 
-  @OneToMany(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.post)
   commentConnection?: Comment[]
 }
