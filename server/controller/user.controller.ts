@@ -1,24 +1,34 @@
 import { Request, Response } from 'express'
-import firebase from '../firebase/useFirebase'
-import { UserDTO } from '../DTO/user.dto'
+import { getRepository } from 'typeorm'
+import { User } from '../entity/User'
 
-export class UserController {
-  constructor() {}
+import { IRouter } from '../models/router'
+import { UserRepository } from '../repository/user.repository'
+import { UserService } from '../service/user.service'
 
-  all() {}
+export class UserController extends IRouter {
+  constructor(public readonly _userService: UserService) {
+    super()
+    this.router.post('/signup', this.register)
+    this.router.get('/', this.all)
+  }
 
-  createUser(req: Request, res: Response) {
-    const user: UserDTO = req.body
-    new Promise(async (resolve, reject) => {
-      firebase
-        .auth()
-        .createUser({
-          email: user.email,
-          password: user.password,
-        })
-        .then((result) => resolve(res.send(result)))
+  all(req: Request, res: Response) {
+    res.send('eindelijk de bug gevonden')
+  }
 
-        .catch((err) => reject(console.log(err)))
-    })
+  register(req: Request, res: Response) {
+    try {
+      // console.log(new UserService().test())
+      new UserRepository().test()
+      new UserService().test()
+      this._userService.test()
+      res.send('ok')
+      // this._userService.test()
+    } catch (err) {
+      console.log(err)
+      res.status(400)
+      res.send('Oops something went wrong')
+    }
   }
 }
